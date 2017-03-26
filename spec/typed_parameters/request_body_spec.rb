@@ -1,4 +1,4 @@
-require 'typed_parameters/request_body'
+require 'spec_helper'
 
 RSpec.describe TypedParameters::RequestBody do
   let(:parameters) do
@@ -10,10 +10,19 @@ RSpec.describe TypedParameters::RequestBody do
           email: "matt@zipmark.com"
         }
       }
-    }
+    }.deep_stringify_keys
   end
 
   subject(:request_body) { described_class.new(parameters) }
+
+  describe "#parameter_at" do
+    let(:path) { %w(data attributes) }
+    subject { request_body.parameter_at(path) }
+
+    it "finds the value at the given keys" do
+      expect(subject).to eq parameters["data"]["attributes"]
+    end
+  end
 
   describe "#paths" do
     subject { request_body.paths }
