@@ -3,14 +3,14 @@ require 'spec_helper'
 RSpec.describe TypedParameters::RequestBody do
   let(:parameters) do
     {
-      data: {
-        type: "users",
-        attributes: {
-          name: "Matt",
-          email: "matt@zipmark.com"
+      'data' => {
+        'type' => "users",
+        'attributes' => {
+          'name'  => "Matt",
+          'email' => "matt@zipmark.com"
         }
       }
-    }.deep_stringify_keys
+    }
   end
 
   subject(:request_body) { described_class.new(parameters) }
@@ -18,6 +18,12 @@ RSpec.describe TypedParameters::RequestBody do
   describe "#parameter_at" do
     let(:path) { %w(data attributes) }
     subject { request_body.parameter_at(path) }
+
+    context "when the path argument mixes symbols and strings" do
+      let(:path) { [ :data, "attributes" ] }
+
+      it { is_expected.to eq parameters["data"]["attributes"] }
+    end
 
     it "finds the value at the given keys" do
       expect(subject).to eq parameters["data"]["attributes"]
