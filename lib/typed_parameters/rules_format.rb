@@ -11,7 +11,7 @@ module TypedParameters
     end
 
     def rule_at(chunks)
-      @rules.dig(*chunks)
+      @rules.dig(*chunks).class
     end
   end
 end

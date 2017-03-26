@@ -22,11 +22,11 @@ RSpec.describe TypedParameters::RulesFormat do
     context "when the path argument mixes symbols and strings" do
       let(:path) { [ :data, "attributes" ] }
 
-      it { is_expected.to eq rules["data"]["attributes"] }
+      it { is_expected.to eq ActiveSupport::HashWithIndifferentAccess }
     end
 
-    it "finds the value at the given keys" do
-      expect(subject).to eq rules["data"]["attributes"]
+    it "determines the rule's condition at that location" do
+      expect(subject).to eq ActiveSupport::HashWithIndifferentAccess
     end
   end
 end
