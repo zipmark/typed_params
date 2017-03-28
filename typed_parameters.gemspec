@@ -14,18 +14,25 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/mecampbellsoup/typed_parameters"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
+  spec.files         = Dir.glob("{bin,lib}/**/*") + %w(LICENSE.txt README.md)
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  # Runtime deps
+  spec.add_runtime_dependency "activesupport", "~> 5"
+  spec.add_runtime_dependency "activemodel",   "~> 5"
+
+  # Debugging and develoment
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake",    "~> 10.0"
   spec.add_development_dependency "rspec",   "~> 3.0"
-  spec.add_development_dependency "pry",     "~> 0.10"
+  spec.add_development_dependency 'awesome_print'
+  spec.add_development_dependency 'pry'
 
-  spec.add_runtime_dependency "activesupport", "~> 5"
+  # Test this gem with a rails app (integration specs)
+  # https://codingdaily.wordpress.com/2011/01/14/test-a-gem-with-the-rails-3-stack/
+  spec.add_development_dependency 'rails'
+  spec.add_development_dependency 'rspec-rails'
 end
 

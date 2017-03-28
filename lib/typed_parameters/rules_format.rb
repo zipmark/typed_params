@@ -1,6 +1,8 @@
 require 'active_support/core_ext/hash'
 
 module TypedParameters
+  RuleNotFound = Class.new(StandardError)
+
   class RulesFormat
     def initialize(rules = {})
       @rules = rules.with_indifferent_access
@@ -11,7 +13,8 @@ module TypedParameters
     end
 
     def rule_at(chunks)
-      @rules.dig(*chunks).class
+      condition = @rules.dig(*chunks) || raise(RuleNotFound)
+      Rule.new(chunks, condition).decompose
     end
   end
 end
