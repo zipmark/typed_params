@@ -21,29 +21,13 @@ RSpec.describe BankAccountsController, :type => :controller do
       context "when an expected key is absent in the request body" do
         before { params.delete :data }
 
-        it "renders an error describing the type mismatch" do
-          post :create, params: params
-
-          expect(JSON(response.body)).to eq({
-            "data" => ["missing_required_param"],
-            "data/attributes" => ["missing_required_param"],
-            "data/attributes/account_number" => ["missing_required_param"],
-            "data/attributes/details" => ["missing_required_param"],
-            "data/type" => ["missing_required_param"],
-          })
-        end
+        pending
       end
 
       context "when a simple type is given instead of a complex type" do
         before { params[:data][:attributes][:details] = "4321" }
 
-        it "renders an error describing the type mismatch" do
-          post :create, params: params
-
-          expect(JSON(response.body)).to eq({
-            "data/attributes/details" => ["param_cannot_be_string_type"]
-          })
-        end
+        pending
       end
 
       context "when the type param declares the wrong resource" do

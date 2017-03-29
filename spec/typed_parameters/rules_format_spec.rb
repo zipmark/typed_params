@@ -15,9 +15,25 @@ RSpec.describe TypedParameters::RulesFormat do
 
   subject(:rules_format) { described_class.new(rules) }
 
-  describe "#rule_at" do
+  describe "#find" do
+    subject { rules_format.find(path) }
+
     let(:path) { %w(data attributes) }
-    subject { rules_format.rule_at(path) }
+    let(:rule) do
+      TypedParameters::Rule.new(path, rules['data']['attributes'])
+    end
+
+    context "when there a rule at the given path" do
+      context "when the path argument mixes symbols and strings" do
+        let(:path) { [ :data, "attributes" ] }
+
+        it { is_expected.to eq rule }
+      end
+
+      it "returns the rule instance at the path" do
+        expect(subject).to eq rule
+      end
+    end
 
     context "when there is no rule at the given path" do
       let(:path) { %w(foo bar) }
@@ -25,16 +41,6 @@ RSpec.describe TypedParameters::RulesFormat do
       it "raises an error" do
         expect { subject }.to raise_error TypedParameters::RuleNotFound
       end
-    end
-
-    context "when the path argument mixes symbols and strings" do
-      let(:path) { [ :data, "attributes" ] }
-
-      it { is_expected.to eq TypedParameters::Rule.new([:data, 'attributes'], rules['data']['attributes']) }
-    end
-
-    it "determines the rule's condition at that location" do
-      expect(subject).to eq TypedParameters::Rule.new(['data', 'attributes'], rules['data']['attributes'])
     end
   end
 end

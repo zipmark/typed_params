@@ -12,9 +12,18 @@ module TypedParameters
       @rules.paths.map { |p| p.split("/") }
     end
 
+    # find(["data", "attributes", "name"])
+    # Raises an error if `rule` not found.
+    # Returns a Rule instance when the path points to an existing param.
+    def find(path)
+      rule = @rules.dig(*path) || raise(RuleNotFound)
+      Rule.new(path, rule)
+    end
+
+    private
+
     def rule_at(chunks)
-      condition = @rules.dig(*chunks) || raise(RuleNotFound)
-      Rule.new(chunks, condition).decompose
+      @rules.dig(*chunks)
     end
   end
 end

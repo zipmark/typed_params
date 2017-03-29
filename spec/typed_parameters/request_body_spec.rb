@@ -15,19 +15,21 @@ RSpec.describe TypedParameters::RequestBody do
 
   subject(:request_body) { described_class.new(parameters) }
 
-  describe "#parameter_at" do
+  describe "#find" do
+    subject { request_body.find(path) }
+
     let(:path) { %w(data attributes) }
-    subject { request_body.parameter_at(path) }
+    let(:paramter) do
+      TypedParameters::Parameter.new(path, parameters['data']['attributes'])
+    end
 
     context "when the path argument mixes symbols and strings" do
       let(:path) { [ :data, "attributes" ] }
 
-      it { is_expected.to eq parameters["data"]["attributes"] }
+      it { is_expected.to eq paramter }
     end
 
-    it "finds the value at the given keys" do
-      expect(subject).to eq parameters["data"]["attributes"]
-    end
+    it { is_expected.to eq paramter }
   end
 
   describe "#paths" do
