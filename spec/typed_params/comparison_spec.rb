@@ -28,11 +28,6 @@ RSpec.describe TypedParams::Comparison do
         context "when a non-specified parameter is included in the request body" do
           let(:params) { { name: "M@", email: "matt@zipmark.com" } }
 
-          # NOTE: pick one of the following 2 test cases as desired behavior
-          it "ignores the non-whitelisted param" do
-            expect(subject).to eq nil
-          end
-
           it "adds an error for the non-whitelisted param" do
             expect(subject).to eq({ "email" => "non_permitted_param" })
           end

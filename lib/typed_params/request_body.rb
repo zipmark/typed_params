@@ -17,14 +17,8 @@ module TypedParams
     # Returns a Parameter instance when the path points to an existing param.
     # Returns nil otherwise.
     def find(path)
-      param = parameter_at(path)
+      param = @parameters.dig(*path)
       Parameter.new(path, param) if param
-    end
-
-    private
-
-    def parameter_at(chunks)
-      @parameters.dig(*chunks)
     end
   end
 end
