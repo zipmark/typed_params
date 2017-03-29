@@ -13,17 +13,11 @@ module TypedParams
     end
 
     # find(["data", "attributes", "name"])
-    # Raises an error if `rule` not found.
-    # Returns a Rule instance when the path points to an existing param.
+    # Returns a Rule instance when the path points to an existing rule.
+    # Returns nil otherwise.
     def find(path)
-      rule = @rules.dig(*path) || raise(RuleNotFound)
-      Rule.new(path, rule)
-    end
-
-    private
-
-    def rule_at(chunks)
-      @rules.dig(*chunks)
+      rule = @rules.dig(*path)
+      Rule.new(path, rule) if rule
     end
   end
 end

@@ -38,9 +38,7 @@ RSpec.describe TypedParams::RulesFormat do
     context "when there is no rule at the given path" do
       let(:path) { %w(foo bar) }
 
-      it "raises an error" do
-        expect { subject }.to raise_error TypedParams::RuleNotFound
-      end
+      it { is_expected.to eq nil }
     end
   end
 end
