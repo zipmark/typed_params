@@ -1,4 +1,4 @@
-module TypedParameters
+module TypedParams
   class Comparison
     # Example usage:
     # Expected types for arguments indicated on the next line.

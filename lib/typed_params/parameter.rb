@@ -1,4 +1,4 @@
-module TypedParameters
+module TypedParams
   class Parameter
     attr_reader :location, :value
 

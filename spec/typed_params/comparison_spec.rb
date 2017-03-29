@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe TypedParameters::Comparison do
+RSpec.describe TypedParams::Comparison do
   subject(:comparison) do
     described_class.new(
       rules_format: rules_format,
@@ -9,8 +9,8 @@ RSpec.describe TypedParameters::Comparison do
   end
 
   let(:params)       { { name: name } }
-  let(:rules_format) { TypedParameters::RulesFormat.new(rules) }
-  let(:request_body) { TypedParameters::RequestBody.new(params) }
+  let(:rules_format) { TypedParams::RulesFormat.new(rules) }
+  let(:request_body) { TypedParams::RequestBody.new(params) }
 
   describe "#errors" do
     subject { comparison.errors }
@@ -49,7 +49,7 @@ RSpec.describe TypedParameters::Comparison do
     end
 
     context "when the rules format includes an optional type constraint" do
-      # TODO: let(:rules) { { name: TypedParameters.optional(String) } }
+      # TODO: let(:rules) { { name: TypedParams.optional(String) } }
       let(:rules) { { name: [ String, NilClass ] } }
 
       context "when the request body does not adhere to the rules format" do

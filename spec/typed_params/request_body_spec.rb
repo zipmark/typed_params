@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe TypedParameters::RequestBody do
+RSpec.describe TypedParams::RequestBody do
   let(:parameters) do
     {
       'data' => {
@@ -20,7 +20,7 @@ RSpec.describe TypedParameters::RequestBody do
 
     let(:path) { %w(data attributes) }
     let(:paramter) do
-      TypedParameters::Parameter.new(path, parameters['data']['attributes'])
+      TypedParams::Parameter.new(path, parameters['data']['attributes'])
     end
 
     context "when the path argument mixes symbols and strings" do

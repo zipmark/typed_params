@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'rspec-rails'
-gem 'typed_parameters', path: '../../..'
+gem 'typed_params', path: '../../..'
 
 group :test do
   gem 'pry-rails'

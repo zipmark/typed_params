@@ -1,6 +1,6 @@
 require 'active_support/core_ext/hash'
 
-module TypedParameters
+module TypedParams
   RuleNotFound = Class.new(StandardError)
 
   class RulesFormat

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe TypedParameters::RulesFormat do
+RSpec.describe TypedParams::RulesFormat do
   let(:rules) do
     {
       'data' => {
@@ -20,7 +20,7 @@ RSpec.describe TypedParameters::RulesFormat do
 
     let(:path) { %w(data attributes) }
     let(:rule) do
-      TypedParameters::Rule.new(path, rules['data']['attributes'])
+      TypedParams::Rule.new(path, rules['data']['attributes'])
     end
 
     context "when there a rule at the given path" do
@@ -39,7 +39,7 @@ RSpec.describe TypedParameters::RulesFormat do
       let(:path) { %w(foo bar) }
 
       it "raises an error" do
-        expect { subject }.to raise_error TypedParameters::RuleNotFound
+        expect { subject }.to raise_error TypedParams::RuleNotFound
       end
     end
   end

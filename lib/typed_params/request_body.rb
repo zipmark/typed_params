@@ -1,7 +1,7 @@
 require 'active_support/core_ext/hash'
 require 'active_model'
 
-module TypedParameters
+module TypedParams
   class RequestBody
     include ActiveModel::Validations
 
