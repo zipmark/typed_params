@@ -1,9 +1,19 @@
 module TypedParameters
   class Comparison
+    # Example usage:
+    # Expected types for arguments indicated on the next line.
+    # Comparison.new(rules_format: RulesFormat, request_body: RequestBody)
+    #
     def initialize(rules_format:, request_body:)
       @rules_format, @request_body = rules_format, request_body
     end
 
+    # Example usage:
+    # comparison.errors =>
+    # Returns nil when there are no errors when comparing the
+    # rules_format to the request_body.
+    # Otherwise, returns an object where each key is the path to the
+    # problematic parameter and whose value describes the problem.
     def errors
       @errors = {}
 
