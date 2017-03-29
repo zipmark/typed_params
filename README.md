@@ -1,6 +1,6 @@
-# TypedParameters
+# TypedParams
 
-The purpose of `typed_parameters` is to declare and enforce type constraints on your Rails API endpoints.
+The purpose of `typed_params` is to declare and enforce type constraints on your Rails API endpoints.
 
 *NOTE*: We use 'parameter' and 'attribute' somewhat interchangably, as this is the same convention [used by Rails](http://api.rubyonrails.org/classes/ActionController/Parameters.html) (notice the usage of the two words throughout that documentation).
 

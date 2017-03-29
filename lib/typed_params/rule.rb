@@ -1,4 +1,4 @@
-module TypedParameters
+module TypedParams
   class Rule
     attr_reader :location, :condition
 

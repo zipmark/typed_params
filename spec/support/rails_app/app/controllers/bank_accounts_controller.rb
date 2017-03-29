@@ -2,7 +2,7 @@ require 'bank_account'
 require 'complex_object'
 
 class BankAccountsController < ApplicationController
-  include TypedParameters::ActionController
+  include TypedParams::ActionController
 
   CreateBankAccountParams = {
     data: {

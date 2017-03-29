@@ -1,4 +1,4 @@
-module TypedParameters
+module TypedParams
   class Comparison
     def initialize(rules_format:, request_body:)
       @rules_format, @request_body = rules_format, request_body

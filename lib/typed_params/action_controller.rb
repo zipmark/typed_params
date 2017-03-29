@@ -1,4 +1,4 @@
-module TypedParameters
+module TypedParams
   module ActionController
     def self.included base
       base.extend ClassMethods

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require 'typed_parameters'
+require 'typed_params'
 require 'awesome_print'
 require 'pry'
 
