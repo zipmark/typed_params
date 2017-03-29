@@ -23,13 +23,19 @@ RSpec.describe TypedParams::RequestBody do
       TypedParams::Parameter.new(path, parameters['data']['attributes'])
     end
 
-    context "when the path argument mixes symbols and strings" do
-      let(:path) { [ :data, "attributes" ] }
+    context "when there a rule at the given path" do
+      context "when the path argument mixes symbols and strings" do
+        let(:path) { [ :data, "attributes" ] }
 
-      it { is_expected.to eq paramter }
+        it { is_expected.to eq paramter }
+      end
+
+      context "when there is no rule at the given path" do
+        let(:path) { %w(foo bar) }
+
+        it { is_expected.to eq nil }
+      end
     end
-
-    it { is_expected.to eq paramter }
   end
 
   describe "#paths" do
